@@ -1,0 +1,2 @@
+Tue  4 Oct 23:06:47 BST 2022 	 2 awkoutputfile.txt
+Tue  4 Oct 23:06:47 BST 2022 	 18 myawkscript.awk
