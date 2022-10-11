@@ -1,6 +1,2 @@
-mypasswordsfile
-*.pdf
-*.c
-*.log
-**/fq.gz
-!bowtie2.log
+Lecture04/Als_ICA1
+.*
