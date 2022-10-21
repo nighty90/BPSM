@@ -1,0 +1,97 @@
+List the accession numbers of hits that belong to human
+
+s2449149=> select accession
+from hit_table, sequence_table, sample_table
+where
+hit_table.sequence_id = sequence_table.sequence_id
+and
+sequence_table.sample_id = sample_table.sample_id
+and 
+sample_table.common_name = 'human';
+ accession
+-----------
+ abc123
+ hys596
+ ueh876
+(3 rows)
+
+
+
+List all the sequences with longer than 700 bases
+
+s2449149=> select * from sequence_table where length > 700;
+ sequence_id |  seq  | length | sample_id
+-------------+-------+--------+-----------
+           1 | AGGTC |    953 |         1
+           3 | AGTTC |    923 |         2
+           5 | GGGCA |    753 |         3
+(3 rows)
+
+
+
+List the common names and species names for all samples
+
+s2449149=> select common_name, scientific_name from sample_table;
+ common_name  | scientific_name
+--------------+------------------
+ pigeon       | Columba livia
+ red squirrel | Sciurus vulgaris
+ human        | Homo sapiens
+ fox          | Vulpes vulpes
+(4 rows)
+
+
+
+List the accession numbers of hits whose length and score are both greater than 100
+
+s2449149=> select accession
+from hit_table
+where
+length > 100
+and
+score > 100;
+ accession
+-----------
+ jdu544
+ eky668
+(2 rows)
+
+
+
+List the DNA of the sequences which have a hit whose score and length are both greater than 100
+
+s2449149=> select sequence_table.seq
+from sequence_table, hit_table
+where
+sequence_table.sequence_id = hit_table.sequence_id
+and
+hit_table.score > 100
+and
+hit_table.length > 100
+;
+  seq
+-------
+ TAGGC
+ GGGCA
+(2 rows)
+
+
+
+Using the BLAST data output blastoutput2.out that you generated in the BLAST lecture
+try at least some of the following:
+
+show the HSPs with more than 20 mismatches
+
+s2449149=> select * from blastoutput where mismatches > 20;
+
+
+
+
+show the HSPs shorter than 100 amino acids and with more than 20 mismatches
+list the first 20 HSPs that have fewer than 20 mismatches
+how many HSPs are shorter than 100 amino acids?
+list the top ten highest (best) HSPs.
+list the start positions of all matches where the HSP Subject accession includes the letters string "AEI"
+how many subject sequences have more than one HSP?
+what percentage of each HSP is made up of mismatches?
+allocate HSPs into different groups based on their scores
