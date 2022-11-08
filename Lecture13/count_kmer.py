@@ -11,8 +11,8 @@ if __name__ == "__main__":
 	
 	# count kmer
 	k = 3
-	offset = 3
-	n = 4
+	offset = 2
+	n = 3
 	count = {}
 	for i in range(0, len(seq)-k, offset):
 		kmer = seq[i:i+k]
