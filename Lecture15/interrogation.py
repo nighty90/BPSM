@@ -1,8 +1,8 @@
 #!usr/local/bin/python
 
-def ask_question(question, store_dict):
-    val = input(question + "\n")
-    store_dict[question] = val
+def ask_question(the_question, store_dict):
+    val = input(the_question + "\n")
+    store_dict[the_question] = val
 
 
 if __name__ == "__main__":

@@ -22,13 +22,20 @@ if __name__ == "__main__":
     }
     
     dna = input("Please input the DNA sequence:\n").upper()
-    trans = {}
-    dna_len = len(dna)
-    for strand in ("top", "bot"):
+    for strand in ("top", "bottom"):
         for frame in (1, 2, 3):
-            key = f"{strand}_{frame}"
-            codon_list = [dna[i:i+3] for i in range(frame-1, dna_len, 3)]
-            aa = [gencode[codon] if len(codon) == 3 else "_" for codon in codon_list]
-            trans[key] = "".join(aa)
-    print(trans)
+            if strand == "top":
+                dna_processed = dna[frame-1:]
+            else:
+                trans_table = str.maketrans({"A": "T", "T": "A", "C": "G", "G": "C"})
+                dna_processed = dna.translate(trans_table)
+                dna_processed = dna_processed[::-1]
+                dna_processed = dna_processed[frame-1:]
+            dna_len = len(dna_processed)
+            codon_list = [dna_processed[i:i+3] for i in range(0, dna_len-2, 3)]
+            aa = [gencode.get(codon, "?") for codon in codon_list]
+            trans = "".join(aa)
+            print(f"{strand} {frame}: {' '.join(codon_list)}")
+            print(f"protein: {trans}")
+
 
