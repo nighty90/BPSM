@@ -24,7 +24,8 @@ if __name__ == "__main__":
     bpsm1_regex = r"A[ATCG]TAAT"
     single_digest_site = [match.end()-3 for match in re.finditer(bpsm1_regex, dna)]
     single_digest = get_fragments(single_digest_site, dna)
-    print(f"Fragment sequences:\n{single_digest}")
+    single_digest_output = "\n".join(single_digest)
+    print(f"Fragment sequences:\n{single_digest_output}")
     print(f"Fragment length:\n{[len(x) for x in single_digest]}")
 
     print("="*80)
@@ -35,5 +36,6 @@ if __name__ == "__main__":
     double_digest_site = single_digest_site + bpsm2_digest_site
     double_digest_site.sort()
     double_digest = get_fragments(double_digest_site, dna)
-    print(f"Fragment sequences:\n{double_digest}")
+    double_digest_output = "\n".join(double_digest)
+    print(f"Fragment sequences:\n{double_digest_output}")
     print(f"Fragment length:\n{[len(x) for x in double_digest]}")
